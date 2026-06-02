@@ -8,7 +8,7 @@ public class WorldEventDemoInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log("[DEMO INPUT] Player steals from the Merchants Guild.");
+            EventBus.Publish(new PlayerActionStartedEvent("Stole Item"));
 
             EventBus.Publish(new PlayerStoleItemEvent(
                 "Player",
@@ -20,7 +20,7 @@ public class WorldEventDemoInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Debug.Log("[DEMO INPUT] Player attacks a Town Guard member.");
+            EventBus.Publish(new PlayerActionStartedEvent("Attack Town Guard"));
 
             EventBus.Publish(new NPCAttackedEvent(
                 "Player",
@@ -33,7 +33,7 @@ public class WorldEventDemoInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Debug.Log("[DEMO INPUT] Player attacks a Merchants Guild member.");
+            EventBus.Publish(new PlayerActionStartedEvent("Attack Merchant"));
 
             EventBus.Publish(new NPCAttackedEvent(
                 "Player",
@@ -46,7 +46,7 @@ public class WorldEventDemoInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            Debug.Log("[DEMO INPUT] Player attacks a Thieves' Circle member.");
+            EventBus.Publish(new PlayerActionStartedEvent("Attack Thief"));
 
             EventBus.Publish(new NPCAttackedEvent(
                 "Player",
