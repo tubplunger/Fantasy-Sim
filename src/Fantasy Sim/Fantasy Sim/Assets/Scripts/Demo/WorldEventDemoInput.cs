@@ -8,6 +8,8 @@ public class WorldEventDemoInput : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
+            Debug.Log("[DEMO INPUT] Player steals from the Merchants Guild.");
+
             EventBus.Publish(new PlayerStoleItemEvent(
                 "Player",
                 "Silver Ring",
@@ -18,10 +20,12 @@ public class WorldEventDemoInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
+            Debug.Log("[DEMO INPUT] Player attacks a Town Guard member.");
+
             EventBus.Publish(new NPCAttackedEvent(
                 "Player",
-                "npc_citizen_001",
-                "Toma the Baker",
+                "npc_guard_002",
+                "Guard Toma",
                 "TownGuard",
                 15
             ));
@@ -29,10 +33,27 @@ public class WorldEventDemoInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            EventBus.Publish(new CrimeWitnessedEvent(
-                "npc_farmer_001",
-                "Mira the Farmer",
-                "The player was seen sneaking near a locked chest."
+            Debug.Log("[DEMO INPUT] Player attacks a Merchants Guild member.");
+
+            EventBus.Publish(new NPCAttackedEvent(
+                "Player",
+                "npc_merchant_001",
+                "Merchant Sela",
+                "MerchantsGuild",
+                10
+            ));
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("[DEMO INPUT] Player attacks a Thieves' Circle member.");
+
+            EventBus.Publish(new NPCAttackedEvent(
+                "Player",
+                "npc_thief_001",
+                "Varric the Knife",
+                "ThievesCircle",
+                20
             ));
         }
     }
