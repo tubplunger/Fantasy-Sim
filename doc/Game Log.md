@@ -17,3 +17,12 @@ Everything went well. The creation of the factions went pretty quick so I felt g
 Because of the lack of visuals and things needing to go to the console for me to see if it is working I didn't really know it worked until I ran it and got those updates in the console. It worked wonderfully though and how I expected it to. Everything felt clean besides the console logs not coming in the correct order though that is a very minor issue.
 
 What feels brittle to mean and may need improvements is the amount of scripts and their connections. With just this change the number of scripts have ballooned quite a bit and the issue of something breaking in some of the important first scripts and breaking every other script remains an issue for me. I would like to see if I can improve that, though with this project I am not sure if that is possible currently.
+
+6/2
+The goal for today was continuing with the political systems though rather than adding anything new it was trying to make some improvements.
+
+From testing that I did yesterday I noticed that the event logs coming to the console were very disorganized and kinda spread out randomly, making it hard to parse through the console to make sure everything is working as it should and just read through it all in general.
+
+It didn't take too long to change the console around to be more organized and it turns out you can do some cool stuff with the console, like changing text color which is one of the things I did for today. Nothing broke with these changes and what they did was noticeable immediately and can easily be changed as the project expands.
+
+For tomorrow, I am planning on improving NPC memories and getting the foundations ready for a reactive world.
