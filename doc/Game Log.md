@@ -26,3 +26,10 @@ From testing that I did yesterday I noticed that the event logs coming to the co
 It didn't take too long to change the console around to be more organized and it turns out you can do some cool stuff with the console, like changing text color which is one of the things I did for today. Nothing broke with these changes and what they did was noticeable immediately and can easily be changed as the project expands.
 
 For tomorrow, I am planning on improving NPC memories and getting the foundations ready for a reactive world.
+
+6/3
+The goal for today was to expand and add to the current NPC Memory system by turning from a list of string into events that can support structured memory data in regards to different things.
+
+This system took a while to build up and set up correctly, needing to account for a few different things in NPC memory and then work in the very basic demo scene. In the end, it works well though some fixes were needed cause emotional impact in NPCMemory didn't want to take negative values, which the system needs to for bad memories, so that had to be adjusted to actually work.
+
+Once that was fixed everything was able to work properly, though for tomorrow some things still need to be tested within the new NPC system and the next few days will be spent on making sure it is working properly.
