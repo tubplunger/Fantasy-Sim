@@ -325,6 +325,7 @@ GameObject:
   - component: {fileID: 1654986592}
   - component: {fileID: 1654986591}
   - component: {fileID: 1654986585}
+  - component: {fileID: 1654986593}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -431,6 +432,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 124e2a5a50109454ba6a393aef137a88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1654986593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c188220e090dfdf479c4fbb5b74fcca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  memorySystem: {fileID: 1654986587}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
