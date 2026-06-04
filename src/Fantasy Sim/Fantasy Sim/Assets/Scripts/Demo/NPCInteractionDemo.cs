@@ -28,6 +28,26 @@ public class NPCInteractionDemo : MonoBehaviour
 
             TryCompanionInteraction();
         }
+
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            memorySystem.PrintMemoriesForNPC("npc_baker_001");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            memorySystem.PrintMemoriesForNPC("npc_guard_001");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            memorySystem.PrintMemoriesForNPC("npc_companion_001");
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            memorySystem.ClearAllMemories();
+        }
     }
 
     private void TryBakerInteraction()
@@ -78,6 +98,12 @@ public class NPCInteractionDemo : MonoBehaviour
             "Player"
         );
 
+        NPCMemory betrayalMemory = memorySystem.GetStrongestMemoryOf(
+            "npc_companion_001",
+            MemoryType.Betrayal,
+            "Player"
+        );
+
         if (violenceMemory != null && Mathf.Abs(violenceMemory.GetCurrentStrength()) >= 30)
         {
             Debug.Log("[COMPANION INTERACTION] Companion: I do not like how easily you turn to violence.");
@@ -87,6 +113,12 @@ public class NPCInteractionDemo : MonoBehaviour
         if (theftMemory != null && Mathf.Abs(theftMemory.GetCurrentStrength()) >= 15)
         {
             Debug.Log("[COMPANION INTERACTION] Companion: Stealing bread? Really? We need to be better than that.");
+            return;
+        }
+
+        if (betrayalMemory != null && Mathf.Abs(betrayalMemory.GetCurrentStrength()) >= 30)
+        {
+            Debug.Log("[COMPANION INTERACTION] Companion: After what you did, I am not sure I can trust you.");
             return;
         }
 

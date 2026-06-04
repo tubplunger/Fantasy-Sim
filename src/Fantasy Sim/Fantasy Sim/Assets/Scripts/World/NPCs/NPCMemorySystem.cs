@@ -222,4 +222,59 @@ public class NPCMemorySystem : MonoBehaviour
 
         return strongestMemory;
     }
+
+    public NPCMemory GetStrongestMemoryAboutActor(string npcId, string actorId)
+    {
+        if (!npcMemories.ContainsKey(npcId))
+            return null;
+
+        NPCMemory strongestMemory = null;
+        float strongestStrength = 0;
+
+        foreach (NPCMemory memory in npcMemories[npcId])
+        {
+            if (memory.ActorId != actorId)
+                continue;
+
+            float strength = Mathf.Abs(memory.GetCurrentStrength());
+
+            if (strength > strongestStrength)
+            {
+                strongestStrength = strength;
+                strongestMemory = memory;
+            }
+        }
+
+        return strongestMemory;
+    }
+
+    public void ClearAllMemories()
+    {
+        npcMemories.Clear();
+        Debug.Log("[MEMORY DEBUG] All NPC memories cleared.");
+    }
+
+    public void PrintMemoriesForNPC(string npcId)
+    {
+        if (!npcMemories.ContainsKey(npcId) || npcMemories[npcId].Count == 0)
+        {
+            Debug.Log($"[MEMORY DEBUG] {npcId} has no memories.");
+            return;
+        }
+
+        Debug.Log($"[MEMORY DEBUG] Memories for {npcId}:");
+
+        foreach (NPCMemory memory in npcMemories[npcId])
+        {
+            Debug.Log(
+                $"- Type: {memory.MemoryType}\n" +
+                $"  Event: {memory.EventRemebered}\n" +
+                $"  Actor: {memory.ActorId}\n" +
+                $"  Target: {memory.TargetId}\n" +
+                $"  Impact: {memory.EmotionalImpact}\n" +
+                $"  Current Strength: {memory.GetCurrentStrength():0.0}\n" +
+                $"  Time: {memory.TimeStamp}"
+            );
+        }
+    }
 }
