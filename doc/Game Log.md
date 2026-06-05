@@ -38,3 +38,10 @@ Once that was fixed everything was able to work properly, though for tomorrow so
 The goal for today was rather simple in that the plan was to add a bit more to the debugging so the NPC Memory system is easier to test. Along with a minor change to the memory system itself.
 
 Memories were given a print debug along with a key to clear memories so that you don't have to exit the inspector each time to continually test it. Companion NPC now also reacts to betrayals and there is a new query for a strongest memory about an actor.
+
+6/5
+The goal for today was to start adding in the code for NPC relationships, letting not only factions react to player actions but NPCs as well.
+
+The system took a bit to get working, since it needed to interact with a few other systems like faction reputation and there was a bug that needed to be worked out with one of the scripts. Though once that bug got fixed and the scripts and events were communication as they should everything worked quite well. The bug being that merchants would just increase prices no matter what and they had to be told that they can't keep increasing their prices, to their chagrin.
+
+For tomorrow, I will be looking at some minor improvements to this new system. As there are some things that I believe I have missed or overlooked. Just need to go over everything again and make sure I haven't missed anything.
