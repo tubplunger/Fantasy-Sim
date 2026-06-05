@@ -15,12 +15,14 @@ public class FactionReputationSystem : MonoBehaviour
     {
         EventBus.Subscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Subscribe<PlayerStoleItemEvent>(OnPlayerStoleItem);
+        EventBus.Subscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
     }
 
     private void OnDisable()
     {
         EventBus.Unsubscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Unsubscribe<PlayerStoleItemEvent>(OnPlayerStoleItem);
+        EventBus.Unsubscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
     }
 
     private void CreateTestFactions()
@@ -83,6 +85,26 @@ public class FactionReputationSystem : MonoBehaviour
         );
     }
 
+    private void OnPlayerSavedNPC(PlayerSavedNPCEvent eventData)
+    {
+        ChangeReputation(
+            eventData.TargetFactionId,
+            15,
+            $"Player saved faction member {eventData.TargetNpcName}"
+        );
+
+        ChangeHostility(
+            eventData.TargetFactionId,
+            -10,
+            $"Player saved faction member {eventData.TargetNpcName}"
+        );
+
+        ApplyPositiveAllianceReactions(
+            eventData.TargetFactionId,
+            "Player helped allied faction member"
+        );
+    }
+
     private void ApplyAllianceReactions(string harmedFactionId, string reason)
     {
         foreach (FactionState faction in factions.Values)
@@ -97,6 +119,27 @@ public class FactionReputationSystem : MonoBehaviour
             {
                 ChangeReputation(faction.FactionId, 5, $"Player harmed enemy faction {harmedFactionId}");
                 ChangeHostility(faction.FactionId, -5, $"Player harmed enemy faction {harmedFactionId}");
+            }
+        }
+    }
+
+    private void ApplyPositiveAllianceReactions(string helpedFactionId, string reason)
+    {
+        foreach (FactionState faction in factions.Values)
+        {
+            if (faction.FactionId == helpedFactionId)
+                continue;
+
+            if (faction.Allies.Contains(helpedFactionId))
+            {
+                ChangeReputation(faction.FactionId, 5, reason);
+                ChangeHostility(faction.FactionId, -5, reason);
+            }
+
+            if (faction.Enemies.Contains(helpedFactionId))
+            {
+                ChangeReputation(faction.FactionId, -5, $"Player helped enemy faction {helpedFactionId}");
+                ChangeHostility(faction.FactionId, 5, $"Player helped enemy faction {helpedFactionId}");
             }
         }
     }

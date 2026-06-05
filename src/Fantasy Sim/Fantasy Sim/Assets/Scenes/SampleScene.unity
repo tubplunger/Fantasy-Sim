@@ -326,6 +326,8 @@ GameObject:
   - component: {fileID: 1654986591}
   - component: {fileID: 1654986585}
   - component: {fileID: 1654986593}
+  - component: {fileID: 1654986595}
+  - component: {fileID: 1654986594}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -445,6 +447,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   memorySystem: {fileID: 1654986587}
+--- !u!114 &1654986594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6668d2d417349b48a30815aabf1d81a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relationshipSystem: {fileID: 1654986595}
+--- !u!114 &1654986595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8e0b64935a84148adc8e23bf3b2ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

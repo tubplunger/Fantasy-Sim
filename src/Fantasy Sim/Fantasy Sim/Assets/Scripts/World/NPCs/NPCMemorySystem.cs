@@ -12,6 +12,7 @@ public class NPCMemorySystem : MonoBehaviour
         EventBus.Subscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Subscribe<PlayerHelpedNPCEvent>(OnPlayerHelpedNPC);
         EventBus.Subscribe<PlayerBetrayedNPCEvent>(OnPlayerBetrayedNPC);
+        EventBus.Subscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
     }
 
     private void OnDisable()
@@ -20,6 +21,7 @@ public class NPCMemorySystem : MonoBehaviour
         EventBus.Unsubscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Unsubscribe<PlayerHelpedNPCEvent>(OnPlayerHelpedNPC);
         EventBus.Unsubscribe<PlayerBetrayedNPCEvent>(OnPlayerBetrayedNPC);
+        EventBus.Unsubscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
     }
 
     private void OnPlayerStoleItem(PlayerStoleItemEvent eventData)
@@ -155,6 +157,33 @@ public class NPCMemorySystem : MonoBehaviour
                 eventData.PlayerId,
                 eventData.TargetNpcId,
                 -70,
+                0.05f
+            )
+        );
+    }
+
+    private void OnPlayerSavedNPC(PlayerSavedNPCEvent eventData)
+    {
+        AddMemory(
+            eventData.TargetNpcId,
+            new NPCMemory(
+                MemoryType.Kindness,
+                eventData.Description,
+                eventData.PlayerId,
+                eventData.TargetNpcId,
+                60,
+                0.05f
+            )
+        );
+
+        AddMemory(
+            "npc_companion_001",
+            new NPCMemory(
+                MemoryType.Kindness,
+                $"The player saved {eventData.TargetNpcName}.",
+                eventData.PlayerId,
+                eventData.TargetNpcId,
+                35,
                 0.05f
             )
         );
