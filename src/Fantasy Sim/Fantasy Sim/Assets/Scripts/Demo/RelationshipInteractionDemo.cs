@@ -40,6 +40,11 @@ public class RelationshipInteractionDemo : MonoBehaviour
         {
             relationshipSystem.PrintRelationship("npc_companion_001", PlayerId);
         }
+
+        if (Input.GetKeyDown(KeyCode.F7))
+        {
+            relationshipSystem.ClearAllRelationships();
+        }
     }
 
     private void TalkToVillager()

@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCInteractionDemo : MonoBehaviour
 {
     [SerializeField] private NPCMemorySystem memorySystem;
+    [SerializeField] private RelationshipSystem relationshipSystem;
 
     private void Update()
     {
@@ -86,6 +87,9 @@ public class NPCInteractionDemo : MonoBehaviour
 
     private void TryCompanionInteraction()
     {
+        RelationshipState companionRelationship =
+        relationshipSystem.GetRelationship("npc_companion_001", "Player");
+
         NPCMemory theftMemory = memorySystem.GetStrongestMemoryOf(
             "npc_companion_001",
             MemoryType.Theft,

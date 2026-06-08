@@ -143,6 +143,15 @@ public class RelationshipSystem : MonoBehaviour
         relationship.ModifyLoyalty(loyaltyChange);
         relationship.ModifySuspicion(suspicionChange);
 
+        bool changed =
+            oldTrust != relationship.Trust ||
+            oldFear != relationship.Fear ||
+            oldLoyalty != relationship.Loyalty ||
+            oldSuspicion != relationship.Suspicion;
+
+        if (!changed)
+            return;
+
         EventBus.Publish(new RelationshipChangedEvent(
             npcId,
             actorId,
@@ -191,5 +200,11 @@ public class RelationshipSystem : MonoBehaviour
     private string GetRelationshipKey(string npcId, string actorId)
     {
         return $"{npcId}_{actorId}";
+    }
+
+    public void ClearAllRelationships()
+    {
+        relationships.Clear();
+        Debug.Log("[RELATIONSHIP DEBUG] All relationships cleared.");
     }
 }
