@@ -45,3 +45,11 @@ The goal for today was to start adding in the code for NPC relationships, lettin
 The system took a bit to get working, since it needed to interact with a few other systems like faction reputation and there was a bug that needed to be worked out with one of the scripts. Though once that bug got fixed and the scripts and events were communication as they should everything worked quite well. The bug being that merchants would just increase prices no matter what and they had to be told that they can't keep increasing their prices, to their chagrin.
 
 For tomorrow, I will be looking at some minor improvements to this new system. As there are some things that I believe I have missed or overlooked. Just need to go over everything again and make sure I haven't missed anything.
+
+6/8
+
+The goal for today was mostly to add in some improvements and some fixes to the relationship systems added in last week.
+
+Most of the current systems work well so they didn't need to be changed too much, the biggest use being that a ChangeRelation function would constantly fire even if a relationship hadn't been changed, so a check was added to it to make sure it is firing correctly.
+
+Along with that, companions now check relationships as well instead of just memories, along with a clear method to reset relationships as well as the memories of the NPCs. A constants file was also added so that the process of replacing of hardcoded strings with these values can begin though it will likely be slow.
