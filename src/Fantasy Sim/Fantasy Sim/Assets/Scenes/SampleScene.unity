@@ -328,6 +328,10 @@ GameObject:
   - component: {fileID: 1654986593}
   - component: {fileID: 1654986595}
   - component: {fileID: 1654986594}
+  - component: {fileID: 1654986599}
+  - component: {fileID: 1654986598}
+  - component: {fileID: 1654986597}
+  - component: {fileID: 1654986596}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -471,6 +475,57 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f8e0b64935a84148adc8e23bf3b2ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2248290faf09d4241b38991dcbd44d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shortageSystem: {fileID: 1654986599}
+  migrationSystem: {fileID: 1654986598}
+  dynamicQuestSystem: {fileID: 1654986597}
+--- !u!114 &1654986597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1926581e0310f354d8b1a05154d59474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f0ced1df9f4074fbc17320b464f8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39a68cd94b624464b80fe9d2bfca31f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

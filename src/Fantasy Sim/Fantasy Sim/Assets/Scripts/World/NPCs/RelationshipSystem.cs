@@ -172,6 +172,28 @@ public class RelationshipSystem : MonoBehaviour
         return GetOrCreateRelationship(npcId, actorId);
     }
 
+    public string GetRelationshipMood(string npcId, string actorId)
+    {
+        RelationshipState relationship = GetRelationship(npcId, actorId);
+
+        if (relationship.Fear >= 60)
+            return "Afraid";
+
+        if (relationship.Suspicion >= 60)
+            return "Suspicious";
+
+        if (relationship.Trust >= 40 && relationship.Loyalty >= 30)
+            return "Loyal";
+
+        if (relationship.Trust >= 20)
+            return "Friendly";
+
+        if (relationship.Trust <= -30)
+            return "Hostile";
+
+        return "Neutral";
+    }
+
     public void PrintRelationship(string npcId, string actorId)
     {
         RelationshipState relationship = GetOrCreateRelationship(npcId, actorId);
