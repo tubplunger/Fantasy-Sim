@@ -53,3 +53,11 @@ The goal for today was mostly to add in some improvements and some fixes to the 
 Most of the current systems work well so they didn't need to be changed too much, the biggest use being that a ChangeRelation function would constantly fire even if a relationship hadn't been changed, so a check was added to it to make sure it is firing correctly.
 
 Along with that, companions now check relationships as well instead of just memories, along with a clear method to reset relationships as well as the memories of the NPCs. A constants file was also added so that the process of replacing of hardcoded strings with these values can begin though it will likely be slow.
+
+6/9
+
+The goal for today is likely the biggest one and also the one that will take the longest for this project, but it was getting the system for dynamic quests down and in a working state.
+
+I am glad to say that it is working well. Because of the amount of different quests that will be here I decided to just start with the bones and one of the quests that can come up, just so that it is shown to be working and is ready to be expanded later. The one quest that can come up is a bandit attack which depends on a few conditions: refugees arrived in a place that makes sense, the refugee count is high enough, a protection quest already exists, and then it can generate said quest.
+
+Another check is severity of the quest and its consequences, which in this one is the refugees and their numbers and effects on merchant pricing. This can be easily expanded and already there are plans to add conditions for war, factions, resources, crime, migration pressure, and political instability. For now though, this is a good spot.
