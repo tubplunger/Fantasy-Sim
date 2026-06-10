@@ -8,5 +8,6 @@ public enum QuestType
     Recovery,
     Investigation,
     Diplomacy,
-    Escort
+    Escort,
+    Relief
 }

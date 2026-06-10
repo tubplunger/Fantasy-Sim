@@ -332,6 +332,9 @@ GameObject:
   - component: {fileID: 1654986598}
   - component: {fileID: 1654986597}
   - component: {fileID: 1654986596}
+  - component: {fileID: 1654986602}
+  - component: {fileID: 1654986601}
+  - component: {fileID: 1654986600}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -492,6 +495,8 @@ MonoBehaviour:
   shortageSystem: {fileID: 1654986599}
   migrationSystem: {fileID: 1654986598}
   dynamicQuestSystem: {fileID: 1654986597}
+  roadDangerSystem: {fileID: 1654986602}
+  factionConflictSystem: {fileID: 1654986600}
 --- !u!114 &1654986597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +531,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39a68cd94b624464b80fe9d2bfca31f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19981c0374a1ab241af8cb840c6d6be1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28ba89ef64d5aa44e8cccbf810574174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322aeeafc6cc3724bb42089b69cb5ed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
