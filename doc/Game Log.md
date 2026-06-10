@@ -61,3 +61,11 @@ The goal for today is likely the biggest one and also the one that will take the
 I am glad to say that it is working well. Because of the amount of different quests that will be here I decided to just start with the bones and one of the quests that can come up, just so that it is shown to be working and is ready to be expanded later. The one quest that can come up is a bandit attack which depends on a few conditions: refugees arrived in a place that makes sense, the refugee count is high enough, a protection quest already exists, and then it can generate said quest.
 
 Another check is severity of the quest and its consequences, which in this one is the refugees and their numbers and effects on merchant pricing. This can be easily expanded and already there are plans to add conditions for war, factions, resources, crime, migration pressure, and political instability. For now though, this is a good spot.
+
+6/10
+
+The goal for today was to expand the current dynamic quest system to allow it to take in more conditions and respond well to multiple different world pressures at once.
+
+There is still only the bandit attack quest, but with the new conditions it responds to each pressure and generates a quest for it: Shortage becomes relief quest, refugees becomes protection quest, stolen supplies becomes recovery quest, road danger becomes caravan escort quest, and faction conflict becomes diplomacy quest. All from one event that can happen in the fantasy sim!
+
+If one of these events already exists the game will take note of it and discard it so that duplicates don't appear. Also, clearing quests is now allowed for testing. For tomorrow, expansion on the dynamic quest system will continue!
