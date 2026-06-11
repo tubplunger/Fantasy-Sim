@@ -69,3 +69,13 @@ The goal for today was to expand the current dynamic quest system to allow it to
 There is still only the bandit attack quest, but with the new conditions it responds to each pressure and generates a quest for it: Shortage becomes relief quest, refugees becomes protection quest, stolen supplies becomes recovery quest, road danger becomes caravan escort quest, and faction conflict becomes diplomacy quest. All from one event that can happen in the fantasy sim!
 
 If one of these events already exists the game will take note of it and discard it so that duplicates don't appear. Also, clearing quests is now allowed for testing. For tomorrow, expansion on the dynamic quest system will continue!
+
+6/11
+
+For today, the goal was for the world to react further to quests that are generated and for quests to have multiple statuses that can be shown to the player.
+
+The first thing was to add completion status to quests: active, completed, failed, and expired. Since this is the big foundation that everything else for today needs for it to function. Importance on the quest was then added: low, medium, high, and urgent. And finally, resolutions.
+
+This is all so that the world can be more reactive with these quests that come up, with resolutions effecting other events in the world beyond. Like how factions see you and if the world gets better or worse depending on what happens.
+
+Tomorrow, the focus is going to be on making improvements to the system as it is in a good spot now.
