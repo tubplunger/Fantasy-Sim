@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class DynamicQuestSystems : MonoBehaviour
 {
-    private readonly List<QuestState> activeQuests = new();
-
+    private readonly List<QuestState> quests = new();
     private readonly HashSet<string> generatedQuestKeys = new();
+
+    private void Update()
+    {
+        CheckForExpiredQuests();
+    }
 
     private void OnEnable()
     {
@@ -37,7 +41,11 @@ public class DynamicQuestSystems : MonoBehaviour
                     $"Refugees have gathered near {eventData.LocationId}. " +
                     $"They need protection from bandits and hostile factions.",
                 questType: QuestType.Protection,
-                originReason: eventData.Description
+                importance: eventData.RefugeeCount >= 30 ? QuestImportance.Urgent : QuestImportance.High,
+                locationId: eventData.LocationId,
+                primaryFactionId: DemoIds.TownGuard,
+                originReason: eventData.Description,
+                expirationHours: 1f
             );
         }
 
@@ -47,9 +55,13 @@ public class DynamicQuestSystems : MonoBehaviour
                 questKey: $"Escort_Refugees_{eventData.LocationId}",
                 title: $"Escort Refugees From {eventData.LocationId}",
                 description:
-                    $"A large refugee group near {eventData.LocationId} needs safe passage to a more stable settlement.",
+                    $"A large refugee group near {eventData.LocationId} needs safe passage to a safer settlement.",
                 questType: QuestType.Escort,
-                originReason: eventData.Description
+                importance: QuestImportance.High,
+                locationId: eventData.LocationId,
+                primaryFactionId: DemoIds.TownGuard,
+                originReason: eventData.Description,
+                expirationHours: 2f
             );
         }
     }
@@ -66,7 +78,11 @@ public class DynamicQuestSystems : MonoBehaviour
                 $"{eventData.ResponsibleFactionId} stole vital {eventData.StolenResourceType} supplies near {eventData.LocationId}. " +
                 $"Recovering them could prevent further suffering.",
             questType: QuestType.Recovery,
-            originReason: eventData.Description
+            importance: eventData.AmountStolen >= 75 ? QuestImportance.Urgent : QuestImportance.Medium,
+            locationId: eventData.LocationId,
+            primaryFactionId: DemoIds.MerchantsGuild,
+            originReason: eventData.Description,
+            expirationHours: 3f
         );
     }
 
@@ -82,7 +98,11 @@ public class DynamicQuestSystems : MonoBehaviour
                 $"Road danger near {eventData.LocationId} has become severe. " +
                 $"Caravans need armed escort to survive the route.",
             questType: QuestType.Escort,
-            originReason: eventData.Description
+            importance: eventData.NewDanger >= 80 ? QuestImportance.Urgent : QuestImportance.High,
+            locationId: eventData.LocationId,
+            primaryFactionId: DemoIds.MerchantsGuild,
+            originReason: eventData.Description,
+            expirationHours: 2f
         );
     }
 
@@ -98,7 +118,11 @@ public class DynamicQuestSystems : MonoBehaviour
                 $"Conflict between {eventData.FactionAId} and {eventData.FactionBId} is escalating. " +
                 $"Someone may need to negotiate before open violence spreads.",
             questType: QuestType.Diplomacy,
-            originReason: eventData.Description
+            importance: eventData.NewConflictLevel >= 80 ? QuestImportance.Urgent : QuestImportance.High,
+            locationId: "Regional",
+            primaryFactionId: eventData.FactionBId,
+            originReason: eventData.Description,
+            expirationHours: 4f
         );
     }
 
@@ -114,7 +138,11 @@ public class DynamicQuestSystems : MonoBehaviour
                 $"{eventData.LocationId} is suffering from a serious {eventData.ResourceType} shortage. " +
                 $"Relief supplies are urgently needed.",
             questType: QuestType.Relief,
-            originReason: eventData.Description
+            importance: eventData.NewShortageLevel >= 80 ? QuestImportance.Urgent : QuestImportance.High,
+            locationId: eventData.LocationId,
+            primaryFactionId: DemoIds.MerchantsGuild,
+            originReason: eventData.Description,
+            expirationHours: 2f
         );
     }
 
@@ -123,7 +151,11 @@ public class DynamicQuestSystems : MonoBehaviour
         string title,
         string description,
         QuestType questType,
-        string originReason)
+        QuestImportance importance,
+        string locationId,
+        string primaryFactionId,
+        string originReason,
+        float expirationHours)
     {
         if (generatedQuestKeys.Contains(questKey))
         {
@@ -136,10 +168,14 @@ public class DynamicQuestSystems : MonoBehaviour
             title: title,
             description: description,
             questType: questType,
-            originReason: originReason
+            importance: importance,
+            locationId: locationId,
+            primaryFactionId: primaryFactionId,
+            originReason: originReason,
+            expirationHours: expirationHours
         );
 
-        activeQuests.Add(quest);
+        quests.Add(quest);
         generatedQuestKeys.Add(questKey);
 
         EventBus.Publish(new QuestGeneratedEvent(quest));
@@ -147,32 +183,112 @@ public class DynamicQuestSystems : MonoBehaviour
         Debug.Log(
             $"[QUEST GENERATED] {quest.Title} | " +
             $"Type: {quest.QuestType} | " +
-            $"Origin: {quest.OriginReason}"
+            $"Importance: {quest.Importance} | " +
+            $"Expires In: {quest.ExpirationHours} hours"
         );
+    }
+
+    public void CompleteFirstActiveQuest()
+    {
+        QuestState quest = GetFirstActiveQuest();
+
+        if (quest == null)
+        {
+            Debug.Log("[QUEST DEBUG] No active quest to complete.");
+            return;
+        }
+
+        quest.Status = QuestStatus.Completed;
+        EventBus.Publish(new QuestCompletedEvent(quest));
+    }
+
+    public void FailFirstActiveQuest()
+    {
+        QuestState quest = GetFirstActiveQuest();
+
+        if (quest == null)
+        {
+            Debug.Log("[QUEST DEBUG] No active quest to fail.");
+            return;
+        }
+
+        quest.Status = QuestStatus.Failed;
+        EventBus.Publish(new QuestFailedEvent(quest, "The player did not resolve the crisis."));
+    }
+
+    private QuestState GetFirstActiveQuest()
+    {
+        foreach (QuestState quest in quests)
+        {
+            if (quest.Status == QuestStatus.Active)
+                return quest;
+        }
+
+        return null;
+    }
+
+    private void CheckForExpiredQuests()
+    {
+        foreach (QuestState quest in quests)
+        {
+            if (!quest.IsExpired())
+                continue;
+
+            quest.Status = QuestStatus.Expired;
+            EventBus.Publish(new QuestExpiredEvent(quest));
+        }
     }
 
     public void PrintActiveQuests()
     {
-        if (activeQuests.Count == 0)
-        {
-            Debug.Log("[QUEST DEBUG] No active quests.");
-            return;
-        }
+        bool foundAny = false;
 
         Debug.Log("[QUEST DEBUG] Active quests:");
 
-        foreach (QuestState quest in activeQuests)
+        foreach (QuestState quest in quests)
+        {
+            if (quest.Status != QuestStatus.Active)
+                continue;
+
+            foundAny = true;
+
+            Debug.Log(
+                $"{quest.QuestId} | {quest.Title} | " +
+                $"Type: {quest.QuestType} | " +
+                $"Importance: {quest.Importance} | " +
+                $"Location: {quest.LocationId}"
+            );
+        }
+
+        if (!foundAny)
+            Debug.Log("[QUEST DEBUG] No active quests.");
+    }
+
+    public void PrintAllQuests()
+    {
+        if (quests.Count == 0)
+        {
+            Debug.Log("[QUEST DEBUG] No quests generated.");
+            return;
+        }
+
+        Debug.Log("[QUEST DEBUG] All quests:");
+
+        foreach (QuestState quest in quests)
         {
             Debug.Log(
                 $"{quest.QuestId} | {quest.Title} | " +
-                $"Type: {quest.QuestType} | Origin: {quest.OriginReason}"
+                $"Status: {quest.Status} | " +
+                $"Type: {quest.QuestType} | " +
+                $"Importance: {quest.Importance} | " +
+                $"Origin: {quest.OriginReason}"
             );
         }
     }
 
     public void ClearQuests()
     {
-        activeQuests.Clear();
+        quests.Clear();
         generatedQuestKeys.Clear();
 
         Debug.Log("[QUEST DEBUG] All quests cleared.");

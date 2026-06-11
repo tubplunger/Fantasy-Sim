@@ -71,5 +71,20 @@ public class DynamicQuestDemoInput : MonoBehaviour
         {
             dynamicQuestSystem.ClearQuests();
         }
+
+        if (Input.GetKeyDown(KeyCode.Equals))
+        {
+            dynamicQuestSystem.CompleteFirstActiveQuest();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Minus))
+        {
+            dynamicQuestSystem.FailFirstActiveQuest();
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            dynamicQuestSystem.PrintAllQuests();
+        }
     }
 }
