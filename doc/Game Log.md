@@ -79,3 +79,11 @@ The first thing was to add completion status to quests: active, completed, faile
 This is all so that the world can be more reactive with these quests that come up, with resolutions effecting other events in the world beyond. Like how factions see you and if the world gets better or worse depending on what happens.
 
 Tomorrow, the focus is going to be on making improvements to the system as it is in a good spot now.
+
+6/12
+
+For today, the goal was to make some improvements to the dynamic quest system now that it is in a good spot. Ironing out some issues if they do exist.
+
+Turns out that there wasn't many improvements to be made to the system. The only major improvement was actually making quest outcomes actually effect the real faction state, as it was found that it only effects the logs.
+
+That ended up being a quick fix and now faction state is actually effected. Beyond that, everying was found to be running smoothly so no changes were made. For tomorrow, it will be time to move on to the next system.
