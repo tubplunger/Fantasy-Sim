@@ -100,9 +100,8 @@ public class QuestResolutionReactionSystem : MonoBehaviour
 
     private void PublishFactionReward(QuestState quest, int reputationAmount, string reason)
     {
-        EventBus.Publish(new FactionReputationChangedEvent(
+        EventBus.Publish(new FactionReputationChangeRequestedEvent(
             quest.PrimaryFactionId,
-            0,
             reputationAmount,
             reason
         ));
@@ -110,9 +109,8 @@ public class QuestResolutionReactionSystem : MonoBehaviour
 
     private void PublishFactionPenalty(QuestState quest, int reputationAmount, string reason)
     {
-        EventBus.Publish(new FactionReputationChangedEvent(
+        EventBus.Publish(new FactionReputationChangeRequestedEvent(
             quest.PrimaryFactionId,
-            0,
             reputationAmount,
             reason
         ));

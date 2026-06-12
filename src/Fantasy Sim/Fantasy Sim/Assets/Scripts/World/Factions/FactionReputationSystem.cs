@@ -16,6 +16,7 @@ public class FactionReputationSystem : MonoBehaviour
         EventBus.Subscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Subscribe<PlayerStoleItemEvent>(OnPlayerStoleItem);
         EventBus.Subscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
+        EventBus.Subscribe<FactionReputationChangeRequestedEvent>(OnFactionReputationChangeRequested);
     }
 
     private void OnDisable()
@@ -23,6 +24,7 @@ public class FactionReputationSystem : MonoBehaviour
         EventBus.Unsubscribe<NPCAttackedEvent>(OnNPCAttacked);
         EventBus.Unsubscribe<PlayerStoleItemEvent>(OnPlayerStoleItem);
         EventBus.Unsubscribe<PlayerSavedNPCEvent>(OnPlayerSavedNPC);
+        EventBus.Unsubscribe<FactionReputationChangeRequestedEvent>(OnFactionReputationChangeRequested);
     }
 
     private void CreateTestFactions()
@@ -102,6 +104,15 @@ public class FactionReputationSystem : MonoBehaviour
         ApplyPositiveAllianceReactions(
             eventData.TargetFactionId,
             "Player helped allied faction member"
+        );
+    }
+
+    private void OnFactionReputationChangeRequested(FactionReputationChangeRequestedEvent eventData)
+    {
+        ChangeReputation(
+            eventData.FactionId,
+            eventData.Amount,
+            eventData.Reason
         );
     }
 
