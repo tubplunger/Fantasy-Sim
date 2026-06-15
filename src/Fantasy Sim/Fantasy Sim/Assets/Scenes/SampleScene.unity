@@ -336,6 +336,8 @@ GameObject:
   - component: {fileID: 1654986601}
   - component: {fileID: 1654986600}
   - component: {fileID: 1654986603}
+  - component: {fileID: 1654986605}
+  - component: {fileID: 1654986604}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -582,6 +584,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6554a56e1e0bf047a10535ad50aee68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1654986604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92acbdea0eaae6546ab7772547e16bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  utilityAISystem: {fileID: 1654986605}
+--- !u!114 &1654986605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 700cfe801af041448b67fe2e370148e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relationshipSystem: {fileID: 1654986595}
+  memorySystem: {fileID: 1654986587}
+  roadDangerSystem: {fileID: 1654986602}
+  shortageSystem: {fileID: 1654986599}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
