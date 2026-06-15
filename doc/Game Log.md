@@ -87,3 +87,11 @@ For today, the goal was to make some improvements to the dynamic quest system no
 Turns out that there wasn't many improvements to be made to the system. The only major improvement was actually making quest outcomes actually effect the real faction state, as it was found that it only effects the logs.
 
 That ended up being a quick fix and now faction state is actually effected. Beyond that, everying was found to be running smoothly so no changes were made. For tomorrow, it will be time to move on to the next system.
+
+6/15
+
+For today, the goal was to start working on NPC goals and decision making, so that they can react to events in the world and make decisions according to that.
+
+So far, this system is working well in that different events effect the different values that determine their reactions: fear, greed, loyalty, revenge, and survival. Different actions affect one or several of these values and the highest value determines the action the NPC will take in the end. These values can be raised and lowered depending on the actions of the player and the world.
+
+For tomorrow, the system will continue to be worked on with a hopeful expansion of the systems and any improvements that can be made to the system along the way.
