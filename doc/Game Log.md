@@ -95,3 +95,11 @@ For today, the goal was to start working on NPC goals and decision making, so th
 So far, this system is working well in that different events effect the different values that determine their reactions: fear, greed, loyalty, revenge, and survival. Different actions affect one or several of these values and the highest value determines the action the NPC will take in the end. These values can be raised and lowered depending on the actions of the player and the world.
 
 For tomorrow, the system will continue to be worked on with a hopeful expansion of the systems and any improvements that can be made to the system along the way.
+
+6/16
+
+For today, the goal was to make some improvements to the system after further testing showed that something was a bit off with the current system that needed to be addressed.
+
+This turned out to be that while NPCs can decide on goals that was the extent of it, and their goals and whims could change easily and without warning. So, some changes were made to the current system and now NPCs should choose their goal based on the values, commit to it, and avoid switching to a different goal too easily. Though testing, this system works well and stopped the behavior of NPCs being mercurial in nature.
+
+For tomorrow, either further improvements will be made or the next system will be started.
