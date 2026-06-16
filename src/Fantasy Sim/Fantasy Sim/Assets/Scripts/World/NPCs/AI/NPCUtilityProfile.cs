@@ -8,6 +8,8 @@ public class NPCUtilityProfile
     public string NpcId;
     public string DisplayName;
     public string FactionId;
+    public NPCGoalType CurrentGoal;
+    public float CurrentGoalScore;
 
     [Range(0, 100)] public int Fear;
     [Range(0, 100)] public int Greed;
@@ -28,6 +30,8 @@ public class NPCUtilityProfile
         NpcId = npcId;
         DisplayName = displayName;
         FactionId = factionId;
+        CurrentGoal = NPCGoalType.StayCalm;
+        CurrentGoalScore = 0;
 
         Fear = fear;
         Greed = greed;

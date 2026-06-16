@@ -26,5 +26,10 @@ public class UtilityAIDemoInput : MonoBehaviour
                 10
             ));
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            utilityAISystem.PrintCurrentGoals();
+        }
     }
 }

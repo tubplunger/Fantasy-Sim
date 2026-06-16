@@ -80,6 +80,11 @@ public class UtilityAISystem : MonoBehaviour
                 $"[UTILITY AI] {decision.NpcName} chooses {decision.ChosenGoal} " +
                 $"Score: {decision.Score:0.0} | Reason: {decision.Reason}"
             );
+
+            npc.CurrentGoal = decision.ChosenGoal;
+            npc.CurrentGoalScore = decision.Score;
+
+            ExecuteGoal(npc, decision);
         }
     }
 
@@ -92,6 +97,16 @@ public class UtilityAISystem : MonoBehaviour
         float protectAllyScore = ScoreProtectAlly(npc);
         float exploitShortageScore = ScoreExploitShortage(npc);
 
+        Debug.Log(
+            $"[UTILITY SCORES] {npc.DisplayName} | " +
+            $"Calm: {stayCalmScore:0.0} | " +
+            $"Flee: {fleeDangerScore:0.0} | " +
+            $"Revenge: {seekRevengeScore:0.0} | " +
+            $"Join: {joinFactionScore:0.0} | " +
+            $"Protect: {protectAllyScore:0.0} | " +
+            $"Exploit: {exploitShortageScore:0.0}"
+        );
+
         NPCGoalType bestGoal = NPCGoalType.StayCalm;
         float bestScore = stayCalmScore;
         string bestReason = $"No urgent need. Calm score {stayCalmScore:0.0}.";
@@ -101,6 +116,16 @@ public class UtilityAISystem : MonoBehaviour
         ConsiderGoal(NPCGoalType.JoinFaction, joinFactionScore, $"Survival pressure is high and safety is uncertain.", ref bestGoal, ref bestScore, ref bestReason);
         ConsiderGoal(NPCGoalType.ProtectAlly, protectAllyScore, $"Loyalty and ally concern are high.", ref bestGoal, ref bestScore, ref bestReason);
         ConsiderGoal(NPCGoalType.ExploitShortage, exploitShortageScore, $"Greed and shortage pressure are high.", ref bestGoal, ref bestScore, ref bestReason);
+
+        if (npc.CurrentGoal != NPCGoalType.StayCalm && bestGoal != npc.CurrentGoal)
+        {
+            if (bestScore < npc.CurrentGoalScore + 15)
+            {
+                bestGoal = npc.CurrentGoal;
+                bestScore = npc.CurrentGoalScore;
+                bestReason = "Continuing current goal due to goal commitment.";
+            }
+        }
 
         return new NPCUtilityDecision(
             npc.NpcId,
@@ -227,5 +252,48 @@ public class UtilityAISystem : MonoBehaviour
         score -= npc.Loyalty * 0.2f;
 
         return Mathf.Clamp(score, 0, 100);
+    }
+
+    private void ExecuteGoal(NPCUtilityProfile npc, NPCUtilityDecision decision)
+    {
+        switch (decision.ChosenGoal)
+        {
+            case NPCGoalType.FleeDanger:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} flees from danger near Eastroad.");
+                break;
+
+            case NPCGoalType.SeekRevenge:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} starts planning revenge against the player.");
+                break;
+
+            case NPCGoalType.JoinFaction:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} seeks protection by joining {DemoIds.TownGuard}.");
+                break;
+
+            case NPCGoalType.ProtectAlly:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} moves to protect an ally.");
+                break;
+
+            case NPCGoalType.ExploitShortage:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} raises prices due to the shortage.");
+                break;
+
+            case NPCGoalType.StayCalm:
+                Debug.Log($"[NPC ACTION] {npc.DisplayName} continues normal routine.");
+                break;
+        }
+    }
+
+    public void PrintCurrentGoals()
+    {
+        Debug.Log("[Utility AI Debug] Current NPC goals: ");
+
+        foreach (NPCUtilityProfile npc in npcProfiles)
+        {
+            Debug.Log(
+           $"{npc.DisplayName} | Current Goal: {npc.CurrentGoal} | " +
+           $"Score: {npc.CurrentGoalScore:0.0}"
+       );
+        }
     }
 }
