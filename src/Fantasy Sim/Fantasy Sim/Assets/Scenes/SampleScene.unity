@@ -338,6 +338,11 @@ GameObject:
   - component: {fileID: 1654986603}
   - component: {fileID: 1654986605}
   - component: {fileID: 1654986604}
+  - component: {fileID: 1654986609}
+  - component: {fileID: 1654986608}
+  - component: {fileID: 1654986607}
+  - component: {fileID: 1654986606}
+  - component: {fileID: 1654986610}
   m_Layer: 0
   m_Name: World Systems
   m_TagString: Untagged
@@ -613,6 +618,81 @@ MonoBehaviour:
   memorySystem: {fileID: 1654986587}
   roadDangerSystem: {fileID: 1654986602}
   shortageSystem: {fileID: 1654986599}
+--- !u!114 &1654986606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576250d7b61f76343b2e7cc21c6c7960, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulationTimeline: {fileID: 1654986609}
+  replaySystem: {fileID: 1654986608}
+  shortageSystem: {fileID: 1654986599}
+  migrationSystem: {fileID: 1654986598}
+  roadDangerSystem: {fileID: 1654986602}
+  factionConflictSystem: {fileID: 1654986600}
+  dynamicQuestSystem: {fileID: 1654986597}
+  utilityAISystem: {fileID: 1654986605}
+--- !u!114 &1654986607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f47a5a4cb9af684c8d329472c575f4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulationTimeline: {fileID: 1654986609}
+  dynamicQuestSystem: {fileID: 1654986597}
+  utilityAISystem: {fileID: 1654986605}
+  showOverlay: 1
+  recentEventCount: 8
+--- !u!114 &1654986608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399b9bd3fa97e5845a89b563e8567ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  simulationTimeline: {fileID: 1654986609}
+--- !u!114 &1654986609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 456f7e13a4518ea40a894981d0f8933f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1654986610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654986584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3347c8149083cd4ca32dc8e466803db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  utilityAISystem: {fileID: 1654986605}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
