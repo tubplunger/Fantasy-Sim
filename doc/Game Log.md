@@ -103,3 +103,11 @@ For today, the goal was to make some improvements to the system after further te
 This turned out to be that while NPCs can decide on goals that was the extent of it, and their goals and whims could change easily and without warning. So, some changes were made to the current system and now NPCs should choose their goal based on the values, commit to it, and avoid switching to a different goal too easily. Though testing, this system works well and stopped the behavior of NPCs being mercurial in nature.
 
 For tomorrow, either further improvements will be made or the next system will be started.
+
+6/17
+
+For today, work on the final system has begun. This being the observation systems to allow the player themselves to be able to see what is going on in the fantasy sim.
+
+Everything has been printing to the console so far which the player can't see so I decided to change that. There is now a very simple event log within the game that can be toggled on or off which allows the player to view what is happening, why, and what system is causing it. There is also a replay system included which, while doesn't repeat the simulation, does allow the player to go back to look at something. Also, a world-state inspector to get a better view of everything.
+
+With all of that, tomorrow will be focused on improving these systems so that they work and function better for everyone.
