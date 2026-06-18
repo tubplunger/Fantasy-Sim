@@ -111,3 +111,11 @@ For today, work on the final system has begun. This being the observation system
 Everything has been printing to the console so far which the player can't see so I decided to change that. There is now a very simple event log within the game that can be toggled on or off which allows the player to view what is happening, why, and what system is causing it. There is also a replay system included which, while doesn't repeat the simulation, does allow the player to go back to look at something. Also, a world-state inspector to get a better view of everything.
 
 With all of that, tomorrow will be focused on improving these systems so that they work and function better for everyone.
+
+6/18
+
+For today, the focus remained on improving the debugging and observability systems so that the player can navigate through the game better.
+
+The only improvement that was really needed today was adjusting the size of the overlay in game. Along with that, since there are multiple key binds within the game they were added into the control scheme as well that is easily accessible to the player. So that you don't have to remember all of the controls to look through everything.
+
+For tomorrow, the focus will be on the finishing touch for this project.
